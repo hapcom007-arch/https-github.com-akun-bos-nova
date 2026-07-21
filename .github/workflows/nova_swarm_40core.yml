@@ -32,6 +32,8 @@ jobs:
         shell: cmd
 
       - name: 🛠️ Pabrik Elektronik Mulai Merakit (.EXE)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run build:exe > build_log.txt 2>&1
 
       - name: 🚨 Mengirim Blackbox (Log Kematian) jika Meledak
