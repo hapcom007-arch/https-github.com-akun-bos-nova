@@ -1,0 +1,19 @@
+
+> nova-desktop-commander@2.0.0 build:exe
+> electron-builder --win --x64
+
+
+D:\a\https-github.com-akun-bos-nova\https-github.com-akun-bos-nova\node_modules\app-builder-lib\out\targets\blockmap\blockmap.js:8
+const blake2_js_1 = require("@noble/hashes/blake2.js");
+                    ^
+Error [ERR_REQUIRE_ESM]: require() of ES Module D:\a\https-github.com-akun-bos-nova\https-github.com-akun-bos-nova\node_modules\@noble\hashes\blake2.js from D:\a\https-github.com-akun-bos-nova\https-github.com-akun-bos-nova\node_modules\app-builder-lib\out\targets\blockmap\blockmap.js not supported.
+Instead change the require of blake2.js in D:\a\https-github.com-akun-bos-nova\https-github.com-akun-bos-nova\node_modules\app-builder-lib\out\targets\blockmap\blockmap.js to a dynamic import() which is available in all CommonJS modules.
+    at Object.<anonymous> (D:\a\https-github.com-akun-bos-nova\https-github.com-akun-bos-nova\node_modules\app-builder-lib\out\targets\blockmap\blockmap.js:8:21)
+    at Object.<anonymous> (D:\a\https-github.com-akun-bos-nova\https-github.com-akun-bos-nova\node_modules\app-builder-lib\out\targets\differentialUpdateInfoBuilder.js:10:20)
+    at Object.<anonymous> (D:\a\https-github.com-akun-bos-nova\https-github.com-akun-bos-nova\node_modules\app-builder-lib\out\targets\ArchiveTarget.js:9:41)
+    at Object.<anonymous> (D:\a\https-github.com-akun-bos-nova\https-github.com-akun-bos-nova\node_modules\app-builder-lib\out\targets\targetFactory.js:9:25)
+    at Object.<anonymous> (D:\a\https-github.com-akun-bos-nova\https-github.com-akun-bos-nova\node_modules\app-builder-lib\out\packager.js:17:25)
+    at Object.<anonymous> (D:\a\https-github.com-akun-bos-nova\https-github.com-akun-bos-nova\node_modules\app-builder-lib\out\index.js:8:20)
+    at Object.<anonymous> (D:\a\https-github.com-akun-bos-nova\https-github.com-akun-bos-nova\node_modules\electron-builder\out\builder.js:9:27)
+    at Object.<anonymous> (D:\a\https-github.com-akun-bos-nova\https-github.com-akun-bos-nova\node_modules\electron-builder\out\cli\cli.js:7:19)
+    at Object.<anonymous> (D:\a\https-github.com-akun-bos-nova\https-github.com-akun-bos-nova\node_modules\electron-builder\cli.js:4:1)
