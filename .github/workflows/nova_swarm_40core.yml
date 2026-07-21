@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-exe:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     
     steps:
       - name: 📥 Menerima Sinyal dari Nova Offline
@@ -24,16 +24,10 @@ jobs:
 
       - name: 🛡️ PROTOKOL SELF-VERIFICATION (10 PENGULANGAN)
         run: |
-          for i in {1..10}; do
-            npm run verify $i
-          done
-        shell: bash
-
-      - name: 🍷 Meminum Ramuan WINE (Penerjemah Bahasa Windows)
-        run: |
-          sudo dpkg --add-architecture i386
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends wine64 wine32
+          for /l %%x in (1, 1, 10) do (
+            npm run verify %%x
+          )
+        shell: cmd
 
       - name: 🛠️ Pabrik Elektronik Mulai Merakit (.EXE)
         run: npm run build:exe
