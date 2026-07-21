@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nova Mobile Commander</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="glass-header">
+            <div class="status-indicator">
+                <div class="pulse-dot"></div>
+                <span class="status-text">NOVA CLOUD LINK: ACTIVE</span>
+            </div>
+            <h1 class="glitch-title">NOVA COMMANDER</h1>
+        </header>
+
+        <!-- Chat Area -->
+        <main class="chat-container" id="chatBox">
+            <div class="message nova-msg">
+                <div class="avatar">N</div>
+                <div class="bubble">
+                    <strong>NOVA:</strong> BWAHAHAHA! Selamat datang di markas awan, Bos! Sistem 1 Triliun Node siap menerima perintah dari genggaman Anda.
+                </div>
+            </div>
+        </main>
+
+        <!-- Input Area -->
+        <footer class="glass-input">
+            <input type="text" id="userInput" placeholder="Tulis perintah untuk Nova..." autocomplete="off">
+            <button id="sendBtn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

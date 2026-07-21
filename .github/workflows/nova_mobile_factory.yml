@@ -1,0 +1,56 @@
+name: NOVA MOBILE (APK) FACTORY
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/mobile/**'
+      - '.github/workflows/nova_mobile_factory.yml'
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Menerima Cetak Biru (Checkout)
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Membangun Kapasitas Otak (Node.js 20)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: ☕ Menyiapkan Mesin Kopi (Java 17 untuk Android)
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 🤖 Memasang Mandor Robot (Cordova)
+        run: npm install -g cordova
+
+      - name: 🏗️ Merakit Pabrik Mobile (Cordova Init)
+        run: |
+          cordova create mobile_app com.ghostprotocol.novamobile "Nova Mobile Commander"
+          # Hapus file bawaan
+          rm -rf mobile_app/www/*
+          # Masukkan UI Premium buatan Nova
+          cp -r src/mobile/* mobile_app/www/
+
+      - name: 📱 Menginjeksi Platform Android
+        run: |
+          cd mobile_app
+          cordova platform add android@12.0.1
+
+      - name: 🔨 KOMPILASI BRUTAL (Membakar Kode Menjadi APK)
+        run: |
+          cd mobile_app
+          cordova build android
+
+      - name: 🚀 Menerbitkan APK ke Brankas Bos
+        uses: actions/upload-artifact@v4
+        with:
+          name: Nova_Mobile_Commander_APK
+          path: mobile_app/platforms/android/app/build/outputs/apk/debug/app-debug.apk
