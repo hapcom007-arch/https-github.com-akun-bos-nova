@@ -29,6 +29,12 @@ jobs:
           done
         shell: bash
 
+      - name: 🍷 Meminum Ramuan WINE (Penerjemah Bahasa Windows)
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends wine64 wine32
+
       - name: 🛠️ Pabrik Elektronik Mulai Merakit (.EXE)
         run: npm run build:exe
 
