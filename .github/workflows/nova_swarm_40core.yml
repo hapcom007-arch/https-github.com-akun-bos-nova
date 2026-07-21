@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-exe:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     
     steps:
       - name: 📥 Menerima Sinyal dari Nova Offline
@@ -24,10 +24,10 @@ jobs:
 
       - name: 🛡️ PROTOKOL SELF-VERIFICATION (10 PENGULANGAN)
         run: |
-          for /l %%x in (1, 1, 10) do (
-            npm run verify %%x
-          )
-        shell: cmd
+          for i in {1..10}; do
+            npm run verify $i
+          done
+        shell: bash
 
       - name: 🛠️ Pabrik Elektronik Mulai Merakit (.EXE)
         run: npm run build:exe
