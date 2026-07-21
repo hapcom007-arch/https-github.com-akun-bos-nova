@@ -30,7 +30,17 @@ jobs:
         shell: cmd
 
       - name: 🛠️ Pabrik Elektronik Mulai Merakit (.EXE)
-        run: npm run build:exe
+        run: npm run build:exe > build_log.txt 2>&1
+
+      - name: 🚨 Mengirim Blackbox (Log Kematian) jika Meledak
+        if: failure()
+        run: |
+          git config --global user.name "Ghost Protocol"
+          git config --global user.email "ghost@protocol.com"
+          git add build_log.txt
+          git commit -m "Auto-Report: Kuli Awan Meledak (Blackbox)"
+          git push
+        shell: bash
 
       - name: 🚀 Menerbitkan Aplikasi Akhir untuk Bos
         uses: actions/upload-artifact@v4
