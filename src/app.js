@@ -70,4 +70,50 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    const btnExecuteCmd = document.getElementById('btnExecuteCmd');
+    const cmdInput = document.getElementById('cmdInput');
+
+    if (btnExecuteCmd && cmdInput) {
+        btnExecuteCmd.addEventListener('click', () => {
+            const cmd = cmdInput.value.trim();
+            if (!cmd) return addLog('ERROR: Perintah kosong Jenderal!');
+
+            addLog(`[GHOST PROTOCOL] Menembakkan perintah: ${cmd}`);
+            btnExecuteCmd.disabled = true;
+            btnExecuteCmd.innerText = 'MENGEKSEKUSI...';
+
+            exec(cmd, (error, stdout, stderr) => {
+                if (error) {
+                    addLog(`[ERROR ASTRAL] ${error.message}`);
+                } else if (stderr) {
+                    addLog(`[PERINGATAN ASTRAL] ${stderr}`);
+                }
+                
+                if (stdout) {
+                    // Pecah by newline dan tampilkan 5 baris pertama saja agar terminal tidak kepenuhan
+                    const lines = stdout.trim().split('\n');
+                    const limit = 5;
+                    for (let i = 0; i < Math.min(lines.length, limit); i++) {
+                        addLog(`[OUT] ${lines[i]}`);
+                    }
+                    if (lines.length > limit) {
+                        addLog(`[OUT] ... (dan ${lines.length - limit} baris output lainnya disembunyikan)`);
+                    }
+                }
+                
+                addLog('EKSEKUSI SELESAI.');
+                btnExecuteCmd.disabled = false;
+                btnExecuteCmd.innerText = 'EKSEKUSI ASTRAL';
+                cmdInput.value = '';
+            });
+        });
+
+        // Bisa teken Enter di input
+        cmdInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                btnExecuteCmd.click();
+            }
+        });
+    }
 });
