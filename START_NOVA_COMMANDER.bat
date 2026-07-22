@@ -31,6 +31,9 @@ if not exist ".git" (
     echo ====================================================
 )
 
+echo [MULAI] Membuka Jendela Dashboard (GUI)...
+start npm start
+
 echo [MULAI] Mengaktifkan Mata Pengintai...
 node nova_commander.js
 pause

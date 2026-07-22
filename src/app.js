@@ -1,7 +1,10 @@
+const { exec } = require('child_process');
+
 document.addEventListener('DOMContentLoaded', () => {
     const matrix = document.getElementById('matrix');
     const logTerminal = document.getElementById('logTerminal');
     const btnSimulate = document.getElementById('btnSimulate');
+    const btnSync = document.getElementById('btnSync');
     
     // Generate 40 Cores
     for (let i = 1; i <= 40; i++) {
@@ -45,4 +48,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, 100); // nyalakan core secara bertahap cepat
     });
+
+    if (btnSync) {
+        btnSync.addEventListener('click', () => {
+            addLog('SINKRONISASI DIMULAI: Menghubungi markas awan (GitHub)...');
+            btnSync.disabled = true;
+            btnSync.innerText = 'MENYEDOT DATA...';
+
+            exec('git pull origin main', (error, stdout, stderr) => {
+                if (error) {
+                    addLog(`ERROR: Gagal menyedot data. ${error.message}`);
+                } else if (stderr && stderr.includes('fatal')) {
+                    addLog(`Gagal: ${stderr}`);
+                } else {
+                    addLog(`[GIT] ${stdout.trim() || stderr.trim()}`);
+                    addLog('SINKRONISASI SELESAI: Data offline berhasil diperbarui!');
+                }
+                
+                btnSync.disabled = false;
+                btnSync.innerText = 'SINKRONISASI DATA CLOUD (GIT PULL)';
+            });
+        });
+    }
 });
